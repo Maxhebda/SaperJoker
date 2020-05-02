@@ -19,11 +19,15 @@ MainWindow::MainWindow(QWidget *parent)
             myButton[y][x] = new QPushButton();
             myButton[y][x]->setObjectName(QVariant(y*10+x).toString());
             myButton[y][x]->size().setWidth(20);
-            myButton[y][x]->size().setHeight(20);
+            myButton[y][x]->size().setHeight(40);
             myButton[y][x]->setFont(myButtonFont);
-//            myButton[y][x]->setText("1");
+
+            myButton[y][x]->setIcon(QIcon(":/res/01mine.png"));
+//            myButton[y][x]->setDown(true);
+            myButton[y][x]->setIconSize(QSize(20, 20));
             ui->gridLayout->addWidget(myButton[y][x],y,x);
             connect(myButton[y][x],SIGNAL(clicked()),this,SLOT(myButtonClick()));
+            connect(myButton[y][x],SIGNAL(released()), this, SLOT(myButtonClickRight()));
         }
     }
 }
@@ -36,4 +40,9 @@ MainWindow::~MainWindow()
 void MainWindow::myButtonClick()
 {
     ui->menuNowa_Gra->setTitle(((QPushButton*)sender())->objectName());
+}
+
+void MainWindow::myButtonClickRight()
+{
+    ui->menuNowa_Gra->setTitle("ok");
 }

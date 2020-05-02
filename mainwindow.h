@@ -22,5 +22,6 @@ private:
 
 private slots:
     void myButtonClick();
+    void myButtonClickRight();
 };
 #endif // MAINWINDOW_H
