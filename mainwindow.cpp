@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "qmyclickbutton.h"                                   //  my add right click mouse
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -16,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
     {
         for (uint8_t x=0 ; x<10 ; x++)
         {
-            myButton[y][x] = new QPushButton();
+            myButton[y][x] = new QMyClickButton();
             myButton[y][x]->setObjectName(QVariant(y*10+x).toString());
             myButton[y][x]->size().setWidth(20);
             myButton[y][x]->size().setHeight(40);
@@ -26,8 +27,9 @@ MainWindow::MainWindow(QWidget *parent)
 //            myButton[y][x]->setDown(true);
             myButton[y][x]->setIconSize(QSize(20, 20));
             ui->gridLayout->addWidget(myButton[y][x],y,x);
-            connect(myButton[y][x],SIGNAL(clicked()),this,SLOT(myButtonClick()));
-            connect(myButton[y][x],SIGNAL(released()), this, SLOT(myButtonClickRight()));
+            connect(myButton[y][x],SIGNAL(leftClicked()),this,SLOT(myButtonClick()));
+            connect(myButton[y][x],SIGNAL(rightClicked()),this,SLOT(myButtonClickRight()));
+
         }
     }
 }

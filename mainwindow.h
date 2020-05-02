@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QPushButton>
+#include <qmyclickbutton.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -18,7 +19,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    QPushButton * myButton[14][10];
+    QMyClickButton * myButton[14][10];
 
 private slots:
     void myButtonClick();
