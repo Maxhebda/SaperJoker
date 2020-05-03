@@ -6,16 +6,18 @@ class MyCell
 {
 public:
     MyCell();
-    unsigned short int getStateBoard();
-    unsigned short int getState();
-    void setStateBoard(unsigned short int);
-    void setState(unsigned short int);
+    unsigned short int getStateDown();
+    unsigned short int getStateUp();
+    void setStateDown(unsigned short int);
+    void setStateUp(unsigned short int);
     bool isMine();
     bool isFlag();
+    bool isClicked();                               //if is click
+    void setMine();
 
 private:
-    unsigned short int stateBoard;               //012345678  9-mine  10-joker
-    unsigned short int state;                    //0-clear 1-click 2-flag
+    unsigned short int stateDown;               //012345678  9-mine  10-joker
+    unsigned short int stateUp;                    //0-clear 1-click 2-flag
 };
 
 #endif // MYCELL_H

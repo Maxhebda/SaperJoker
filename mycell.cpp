@@ -2,33 +2,38 @@
 
 MyCell::MyCell()
 {
-    state = 0;
-    stateBoard = 0;
+    stateUp = 0;
+    stateDown = 0;
 }
 
-unsigned short int MyCell::getState()
+unsigned short int MyCell::getStateUp()
 {
-    return state;
+    return stateUp;
 }
 
-unsigned short int MyCell::getStateBoard()
+void MyCell::setMine()
 {
-    return stateBoard;
+    stateDown = 9;
 }
 
-void MyCell::setState(unsigned short int s)
+unsigned short int MyCell::getStateDown()
 {
-    state = s;
+    return stateDown;
 }
 
-void MyCell::setStateBoard(unsigned short s)
+void MyCell::setStateUp(unsigned short int s)
 {
-    stateBoard = s;
+    stateUp = s;
+}
+
+void MyCell::setStateDown(unsigned short s)
+{
+    stateDown = s;
 }
 
 bool MyCell::isMine()
 {
-    if (stateBoard==9)
+    if (stateDown==9)
         return true;
     else
         return false;
@@ -36,7 +41,15 @@ bool MyCell::isMine()
 
 bool MyCell::isFlag()
 {
-    if (state==2)
+    if (stateUp==2)
+        return true;
+    else
+        return false;
+}
+
+bool MyCell::isClicked()
+{
+    if (stateUp==1)
         return true;
     else
         return false;

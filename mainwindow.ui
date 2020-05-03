@@ -77,11 +77,17 @@
    </property>
    <widget class="QMenu" name="menuNowa_Gra">
     <property name="title">
-     <string>Nowa Gra</string>
+     <string>Start</string>
     </property>
+    <addaction name="actionNew_Game"/>
    </widget>
    <addaction name="menuNowa_Gra"/>
   </widget>
+  <action name="actionNew_Game">
+   <property name="text">
+    <string>New Game</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

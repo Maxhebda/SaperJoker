@@ -7,9 +7,22 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    std::srand(std::time(nullptr));
     MainWindow::setStyleSheet("background-color: lightgray;");
 
     // ------------------------------  generate and show botton  -------------------------------
+    createBoard();
+    saperBoard.generateNew();
+    showBoard();
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+
+void MainWindow::createBoard()
+{
     QFont myButtonFont;
     myButtonFont.setPixelSize(16);
     myButtonFont.setFamily("Arial");
@@ -33,15 +46,28 @@ MainWindow::MainWindow(QWidget *parent)
     }
 }
 
-MainWindow::~MainWindow()
+void MainWindow::showBoard()
 {
-    delete ui;
+    for (uint8_t y=0 ; y<14 ; y++)
+    {
+        for (uint8_t x=0 ; x<10 ; x++)
+        {
+            if (saperBoard.get(y,x).isClicked())
+                myButton[y][x]->setFlat(1);
+            else
+                myButton[y][x]->setFlat(0);
+            if (saperBoard.get(y,x).isMine())
+                myButton[y][x]->setIcon(QIcon(":/res/01mine.png"));
+            if (saperBoard.get(y,x).isFlag())
+                myButton[y][x]->setIcon(QIcon(":/res/03flag.png"));
+        }
+    }
 }
 
 void MainWindow::myButtonClick()
 {
     ui->menuNowa_Gra->setTitle(((QPushButton*)sender())->objectName());
-    ((QPushButton*)sender())->blockSignals(1);
+//    ((QPushButton*)sender())->blockSignals(1);
 //    ((QPushButton*)sender())->setDown(0);
     ((QPushButton*)sender())->setFlat(1);
 //    ((QPushButton*)sender())->setIcon(QIcon(":/res/02mine.png"));

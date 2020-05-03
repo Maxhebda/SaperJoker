@@ -17,11 +17,13 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void showBoard();
+    void createBoard();
 
 private:
     Ui::MainWindow *ui;
     QMyClickButton * myButton[14][10];
-    MyBoard SaperBoard;
+    MyBoard saperBoard;
 
 private slots:
     void myButtonClick();
