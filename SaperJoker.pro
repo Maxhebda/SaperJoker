@@ -18,10 +18,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
+    myboard.cpp \
+    mycell.cpp \
     qmyclickbutton.cpp
 
 HEADERS += \
     mainwindow.h \
+    myboard.h \
+    mycell.h \
     qmyclickbutton.h
 
 FORMS += \

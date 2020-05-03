@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QPushButton>
 #include <qmyclickbutton.h>
+#include "myboard.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -20,7 +21,7 @@ public:
 private:
     Ui::MainWindow *ui;
     QMyClickButton * myButton[14][10];
-    uint8_t myBoard[14][10];                    // 012345678-down  10-clear 9-mine 10-flag 11-joker 12-boom
+    MyBoard SaperBoard;
 
 private slots:
     void myButtonClick();
