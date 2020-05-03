@@ -1,7 +1,6 @@
 #include "qmyclickbutton.h"
 
- QMyClickButton:: QMyClickButton(QWidget *parent) :
-    QPushButton(parent)
+QMyClickButton:: QMyClickButton(QWidget *parent) :  QPushButton(parent)
 {
 }
 
