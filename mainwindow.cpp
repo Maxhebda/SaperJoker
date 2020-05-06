@@ -60,6 +60,11 @@ void MainWindow::showBoard()
                 myButton[y][x]->setIcon(QIcon(":/res/01mine.png"));
             if (saperBoard.get(y,x).isFlag())
                 myButton[y][x]->setIcon(QIcon(":/res/03flag.png"));
+            if (saperBoard.get(y,x).getStateDown()>0 && saperBoard.get(y,x).getStateDown()<9)
+                {
+                    myButton[y][x]->setText(QVariant(saperBoard.get(y,x).getStateDown()).toString());
+                    myButton[y][x]->setStyleSheet("color: "+saperBoard.getColorNumber(y,x)+";");
+                }
         }
     }
 }
