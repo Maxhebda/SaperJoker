@@ -35,7 +35,7 @@ void MyBoard::clear()
 
 void MyBoard::generateNew()
 {
-    // -------------------------------------- random 25 mines ---------------------------------------
+    // -------------------------------------- random 15 mines ---------------------------------------
     struct Wsp
     {
         unsigned short int y=0;
@@ -44,7 +44,7 @@ void MyBoard::generateNew()
     Wsp temp;
     bool isTemp;
     QVector<Wsp> mineCounter;
-    while (mineCounter.size()<25)
+    while (mineCounter.size()<15)
     {
         temp.y = rand()%14;                                     // random value 0-13
         temp.x = rand()%10;
@@ -61,7 +61,7 @@ void MyBoard::generateNew()
         {
             mineCounter.push_back(temp);
             allBoard[temp.y][temp.x].setMine();
-            allBoard[temp.y][temp.x].setStateUp(1);//set click down
+//            allBoard[temp.y][temp.x].setStateUp(1);//set click down
         }
     }
 
@@ -83,9 +83,22 @@ void MyBoard::generateNew()
 
 }
 
-MyCell MyBoard::get(unsigned short y, unsigned short x)
+MyCell MyBoard::get(unsigned short int y, unsigned short int x)
 {
     return allBoard[y][x];
+}
+
+void MyBoard::setClick(unsigned short int y, unsigned short int x)
+{
+    allBoard[y][x].setStateUp(1);
+}
+
+bool MyBoard::isMine(unsigned short int y, unsigned short int x)
+{
+   if (allBoard[y][x].isMine())
+       return true;
+   else
+       return false;
 }
 
 unsigned short int MyBoard::numberOfMin(unsigned short int y, unsigned short int x)

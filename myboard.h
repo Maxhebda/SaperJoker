@@ -9,6 +9,8 @@ public:
     MyBoard();
     void clear();
     MyCell get(unsigned short int, unsigned short int);
+    void setClick(unsigned short int, unsigned short int);
+    bool isMine(unsigned short int, unsigned short int);
     QString getColorNumber(unsigned short int, unsigned short int);
     void generateNew();
 
