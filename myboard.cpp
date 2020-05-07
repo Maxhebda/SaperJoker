@@ -72,7 +72,11 @@ void MyBoard::generateNew()
         {
             if (!allBoard[y][x].isMine())
             {
-                allBoard[y][x].setStateDown(numberOfMin(y,x));
+                allBoard[y][x].setStateDown(numberOfMin(y,x));          //=set number
+                if (rand()%100<6 && allBoard[y][x].getStateDown()!=0)
+                {
+                    allBoard[y][x].setStateDown(10);                    //=set joker
+                }
             }
         }
     }
