@@ -6,6 +6,16 @@ MyBoard::MyBoard()
     clear();
 }
 
+void MyBoard::setFlag(unsigned short y, unsigned short x)
+{
+    allBoard[y][x].setStateUp(2);  //set flag
+}
+
+void MyBoard::unSetFlag(unsigned short y, unsigned short x)
+{
+    allBoard[y][x].setStateUp(0); //set clear/emptly
+}
+
 QString MyBoard::getColorNumber(unsigned short int y, unsigned short int x)
 {
     switch (allBoard[y][x].getStateDown()) {
@@ -78,6 +88,7 @@ void MyBoard::generateNew()
                     allBoard[y][x].setStateDown(10);                    //=set joker
                 }
             }
+//            allBoard[y][x].setStateUp(0);
         }
     }
 

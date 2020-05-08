@@ -53,34 +53,31 @@ void MainWindow::showBoard()
         for (uint8_t x=0 ; x<10 ; x++)
         {
             if (saperBoard.get(y,x).isClicked())
-                myButton[y][x]->setFlat(1);
-            else
-                myButton[y][x]->setFlat(0);
-
-            if (saperBoard.get(y,x).isClicked())
                 {
+                    myButton[y][x]->setFlat(1);
+                    myButton[y][x]->setIcon(QIcon(""));
                     if (saperBoard.get(y,x).isMine())
                         myButton[y][x]->setIcon(QIcon(":/res/01mine.png"));
+                    else
+                    if (saperBoard.get(y,x).getStateDown()==10)
+                        myButton[y][x]->setIcon(QIcon(":/res/04joker.png"));
+                    else
+                        myButton[y][x]->setIcon(QIcon(""));
+
+                    if (saperBoard.get(y,x).getStateDown()>0 && saperBoard.get(y,x).getStateDown()<9)
+                        {
+                            myButton[y][x]->setText(QVariant(saperBoard.get(y,x).getStateDown()).toString());
+                            myButton[y][x]->setStyleSheet("color: "+saperBoard.getColorNumber(y,x)+";");
+                        }
                 }
-
-            if (saperBoard.get(y,x).isFlag())
-                myButton[y][x]->setIcon(QIcon(":/res/03flag.png"));
-
-            if (saperBoard.get(y,x).isClicked())
-            {
-                if (saperBoard.get(y,x).getStateDown()==10)
-                    myButton[y][x]->setIcon(QIcon(":/res/04joker.png"));
-            }
-
-            if (saperBoard.get(y,x).isClicked())
+            else
                 {
-                if (saperBoard.get(y,x).getStateDown()>0 && saperBoard.get(y,x).getStateDown()<9)
-                    {
-                        myButton[y][x]->setText(QVariant(saperBoard.get(y,x).getStateDown()).toString());
-                        myButton[y][x]->setStyleSheet("color: "+saperBoard.getColorNumber(y,x)+";");
-                    }
+                    myButton[y][x]->setFlat(0);
+                    if (saperBoard.get(y,x).isFlag())
+                        myButton[y][x]->setIcon(QIcon(":/res/03flag.png"));
+                    else
+                        myButton[y][x]->setIcon(QIcon(""));
                 }
-
         }
     }
 }
@@ -101,24 +98,29 @@ void MainWindow::myButtonClick()
     unsigned short int y = getNumButtonY(QVariant(((QPushButton*)sender())->objectName()).toInt());
     unsigned short int x = getNumButtonX(QVariant(((QPushButton*)sender())->objectName()).toInt());
 
-//    myButton[y][x]->setFlat(1);
     saperBoard.setClick(y,x);
     if (saperBoard.isMine(y,x))
     {
          ui->menuNowa_Gra->setTitle("przegrana");
     }
-
-//    ui->menuNowa_Gra->setTitle(((QPushButton*)sender())->objectName());
-//    ui->menuNowa_Gra->setTitle(QVariant(x).toString());
-//    ((QPushButton*)sender())->blockSignals(1);
-//    ((QPushButton*)sender())->setDown(0);
-//    ((QPushButton*)sender())->setFlat(1);
-//    ((QPushButton*)sender())->setIcon(QIcon(":/res/02mine.png"));
     showBoard();
 }
 
 void MainWindow::myButtonClickRight()
 {
-    ui->menuNowa_Gra->setTitle("ok");
-    ((QPushButton*)sender())->setIcon(QIcon(":/res/03flag.png"));
+    unsigned short int y = getNumButtonY(QVariant(((QPushButton*)sender())->objectName()).toInt());
+    unsigned short int x = getNumButtonX(QVariant(((QPushButton*)sender())->objectName()).toInt());
+
+    if (!saperBoard.get(y,x).isClicked())
+        {
+            if (saperBoard.get(y,x).isFlag())
+                {
+                    saperBoard.unSetFlag(y,x);
+                }
+            else
+                {
+                    saperBoard.setFlag(y,x);
+                }
+        }
+    showBoard();
 }

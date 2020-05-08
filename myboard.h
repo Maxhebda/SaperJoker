@@ -10,6 +10,8 @@ public:
     void clear();
     MyCell get(unsigned short int, unsigned short int);
     void setClick(unsigned short int, unsigned short int);
+    void setFlag(unsigned short int y, unsigned short int x);
+    void unSetFlag(unsigned short int y, unsigned short int x);
     bool isMine(unsigned short int, unsigned short int);
     QString getColorNumber(unsigned short int, unsigned short int);
     void generateNew();
