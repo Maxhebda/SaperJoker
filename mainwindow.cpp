@@ -155,6 +155,12 @@ void MainWindow::myButtonClickRight()
                     else
                         {
                             saperBoard.setFlag(y,x);
+                            if (saperBoard.isWin())
+                            {
+                                endGame=true;
+                                saperBoard.clickAllMines();
+                                ui->menuNowa_Gra->setTitle("wygrana");
+                            }
                         }
                 }
             showBoard();

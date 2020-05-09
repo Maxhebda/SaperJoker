@@ -33,6 +33,21 @@ void MyBoard::clickAllMines()
     }
 }
 
+bool MyBoard::isWin()
+{
+    bool win=true;
+    for (unsigned short int y=0 ; y<14 ; y++)
+    {
+        for (unsigned short int x=0 ; x<10 ; x++)
+        {
+            if ((allBoard[y][x].getStateUp()==2 && !allBoard[y][x].isMine()) ||         // mine without flag
+                (allBoard[y][x].getStateUp()!=2 && allBoard[y][x].isMine()))            // flag without mine
+                win=false;
+        }
+    }
+    return win;
+}
+
 void MyBoard::clickNeigbors(unsigned short y, unsigned short x)
 {
     if (y>0 && x>0)  if (!allBoard[y-1][x-1].isClicked()){ allBoard[y-1][x-1].setStateUp(1);if (allBoard[y-1][x-1].getStateDown()==0) clickNeigbors(y-1,x-1);}

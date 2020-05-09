@@ -16,7 +16,8 @@ public:
     bool isMine(unsigned short int, unsigned short int);
     QString getColorNumber(unsigned short int, unsigned short int);
     void generateNew();
-    void clickAllMines();//if gameover - click (show) ann mines
+    void clickAllMines();                                                   //if gameover - click (show) ann mines
+    bool isWin();
     void clickNeigbors(unsigned short int y, unsigned short int x);
 
 private:
