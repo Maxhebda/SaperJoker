@@ -90,7 +90,12 @@ void MainWindow::showBoard()
                 {
                     myButton[y][x]->setFlat(0);
                     if (saperBoard.get(y,x).isFlag())
-                        myButton[y][x]->setIcon(QIcon(":/res/03flag.png"));
+                        {
+                            if (endGame && saperBoard.get(y,x).isMine()==false)
+                                myButton[y][x]->setIcon(QIcon(":/res/06flag.png"));
+                            else
+                                myButton[y][x]->setIcon(QIcon(":/res/03flag.png"));
+                        }
                     else
                         myButton[y][x]->setIcon(QIcon(""));
                 }
