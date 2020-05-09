@@ -17,7 +17,7 @@ public:
 
 private:
     unsigned short int stateDown;               //012345678  9-mine  10-joker 11-mineBoom
-    unsigned short int stateUp;                    //0-clear 1-click 2-flag
+    unsigned short int stateUp;                    //0-clear 1-click 2-flag 3-clickAndFlag
 };
 
 #endif // MYCELL_H

@@ -33,7 +33,7 @@ void MyCell::setStateDown(unsigned short s)
 
 bool MyCell::isMine()
 {
-    if (stateDown==9)
+    if (stateDown==9 || stateDown==11)              //9-mine 11-mineBoom
         return true;
     else
         return false;
@@ -49,7 +49,7 @@ bool MyCell::isFlag()
 
 bool MyCell::isClicked()
 {
-    if (stateUp==1)
+    if (stateUp==1 or stateUp==3)                   //1-clicked 3-clickedAndFlag
         return true;
     else
         return false;

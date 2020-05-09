@@ -24,6 +24,7 @@ private:
     Ui::MainWindow *ui;
     QMyClickButton * myButton[14][10];
     MyBoard saperBoard;
+    bool endGame; // if is true - end and block board,
     unsigned short int getNumButtonX(unsigned short int numberObjectButton);
     unsigned short int getNumButtonY(unsigned short int numberObjectButton);
 

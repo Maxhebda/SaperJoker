@@ -16,6 +16,28 @@ void MyBoard::unSetFlag(unsigned short y, unsigned short x)
     allBoard[y][x].setStateUp(0); //set clear/emptly
 }
 
+void MyBoard::clickAllMines()
+{
+    for (unsigned short int y=0 ; y<14 ; y++)
+    {
+        for (unsigned short int x=0 ; x<10 ; x++)
+        {
+            if (allBoard[y][x].isMine())
+                {
+                    if (allBoard[y][x].getStateUp()==2)     //if flag
+                        allBoard[y][x].setStateUp(3);       //set flagAndMine
+                    else
+                        allBoard[y][x].setStateUp(1);       //set regular click
+                }
+        }
+    }
+}
+
+void MyBoard::setMineBoom(unsigned short y, unsigned short x)
+{
+    allBoard[y][x].setStateDown(11);
+}
+
 QString MyBoard::getColorNumber(unsigned short int y, unsigned short int x)
 {
     switch (allBoard[y][x].getStateDown()) {
