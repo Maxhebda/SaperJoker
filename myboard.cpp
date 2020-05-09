@@ -33,6 +33,20 @@ void MyBoard::clickAllMines()
     }
 }
 
+void MyBoard::clickNeigbors(unsigned short y, unsigned short x)
+{
+    if (y>0 && x>0)  if (!allBoard[y-1][x-1].isClicked()){ allBoard[y-1][x-1].setStateUp(1);if (allBoard[y-1][x-1].getStateDown()==0) clickNeigbors(y-1,x-1);}
+    if (y>0)         if (!allBoard[y-1][x  ].isClicked()){ allBoard[y-1][x  ].setStateUp(1);if (allBoard[y-1][x  ].getStateDown()==0) clickNeigbors(y-1,x  );}
+    if (y>0 && x<9)  if (!allBoard[y-1][x+1].isClicked()){ allBoard[y-1][x+1].setStateUp(1);if (allBoard[y-1][x+1].getStateDown()==0) clickNeigbors(y-1,x+1);}
+
+    if (x>0)         if (!allBoard[y  ][x-1].isClicked()){ allBoard[y  ][x-1].setStateUp(1);if (allBoard[y  ][x-1].getStateDown()==0) clickNeigbors(y  ,x-1);}
+    if (x<9)         if (!allBoard[y  ][x+1].isClicked()){ allBoard[y  ][x+1].setStateUp(1);if (allBoard[y  ][x+1].getStateDown()==0) clickNeigbors(y  ,x+1);}
+
+    if (y<13&& x>0)  if (!allBoard[y+1][x-1].isClicked()){ allBoard[y+1][x-1].setStateUp(1);if (allBoard[y+1][x-1].getStateDown()==0) clickNeigbors(y+1,x-1);}
+    if (y<13)        if (!allBoard[y+1][x  ].isClicked()){ allBoard[y+1][x  ].setStateUp(1);if (allBoard[y+1][x  ].getStateDown()==0) clickNeigbors(y+1,x  );}
+    if (y<13&& x<9)  if (!allBoard[y+1][x+1].isClicked()){ allBoard[y+1][x+1].setStateUp(1);if (allBoard[y+1][x+1].getStateDown()==0) clickNeigbors(y+1,x+1);}
+}
+
 void MyBoard::setMineBoom(unsigned short y, unsigned short x)
 {
     allBoard[y][x].setStateDown(11);

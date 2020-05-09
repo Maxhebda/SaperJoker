@@ -17,6 +17,7 @@ public:
     QString getColorNumber(unsigned short int, unsigned short int);
     void generateNew();
     void clickAllMines();//if gameover - click (show) ann mines
+    void clickNeigbors(unsigned short int y, unsigned short int x);
 
 private:
     MyCell allBoard[14][10];                //y=14 x=10

@@ -122,6 +122,12 @@ void MainWindow::myButtonClick()
             unsigned short int x = getNumButtonX(QVariant(((QPushButton*)sender())->objectName()).toInt());
 
             saperBoard.setClick(y,x);
+
+            if (saperBoard.get(y,x).getStateDown()==0)          //if you click on empty, looking for empty neighbors
+            {
+                saperBoard.clickNeigbors(y,x);
+            }
+            else
             if (saperBoard.isMine(y,x))
             {
                 endGame = true;
