@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "qmyclickbutton.h"                                   //  my add right click mouse
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -11,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     MainWindow::setStyleSheet("background-color: lightgray;");
 
     connect(ui->actionNew_Game,SIGNAL(triggered()),this,SLOT(newGameClick()));
+    connect(ui->actionInformacje,SIGNAL(triggered()),this,SLOT(infoClick()));
     connect(ui->actionZamknij,SIGNAL(triggered()),this,SLOT(close()));
     // ------------------------------  generate and show botton  -------------------------------
     endGame = false;
@@ -36,11 +38,8 @@ void MainWindow::createBoard()
         {
             myButton[y][x] = new QMyClickButton();
             myButton[y][x]->setObjectName(QVariant(y*10+x).toString());
-//            myButton[y][x]->size().setWidth(20);
-//            myButton[y][x]->size().setHeight(40);
             myButton[y][x]->setFont(myButtonFont);
             myButton[y][x]->setStyleSheet("background-color: #b1b8b7;");
-//            myButton[y][x]->setIcon(QIcon(":/res/01mine.png"));
             myButton[y][x]->setIconSize(QSize(20, 20));
             ui->gridLayout->addWidget(myButton[y][x],y,x);
             connect(myButton[y][x],SIGNAL(leftClicked()),this,SLOT(myButtonClick()));
@@ -178,4 +177,9 @@ void MainWindow::newGameClick()
     saperBoard.generateNew();
     ui->menuNowa_Gra->setTitle("Gra");
     showBoard();
+}
+
+void MainWindow::infoClick()
+{
+    QMessageBox::information(this, "Informacje o grze", "Gra SaperJoker jest podobna do windowsowskiego Sapera. Dodano jednak utrudnienie w postaci przykrycia ok 5% liczb. Joker oznacza, że obok znajduje się przynajmniej jedna mina - dokładnej liczby min nie znamy.\n\nRozmiar planszy - 10x14,\nLiczba min - 15,\nLiczba Jokerów - 5%\n\nAutor : Maksymilian Hebda\n[mini projekt napisany w QT Creator / C++ 10.05.2020]" );
 }

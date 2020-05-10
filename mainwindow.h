@@ -32,5 +32,6 @@ private slots:
     void myButtonClick();
     void myButtonClickRight();
     void newGameClick();
+    void infoClick();
 };
 #endif // MAINWINDOW_H
