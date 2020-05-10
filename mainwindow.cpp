@@ -10,6 +10,8 @@ MainWindow::MainWindow(QWidget *parent)
     std::srand(std::time(nullptr));
     MainWindow::setStyleSheet("background-color: lightgray;");
 
+    connect(ui->actionNew_Game,SIGNAL(triggered()),this,SLOT(newGameClick()));
+    connect(ui->actionZamknij,SIGNAL(triggered()),this,SLOT(close()));
     // ------------------------------  generate and show botton  -------------------------------
     endGame = false;
     createBoard();
@@ -89,6 +91,8 @@ void MainWindow::showBoard()
             else
                 {
                     myButton[y][x]->setFlat(0);
+                    myButton[y][x]->setText("");
+                    myButton[y][x]->setStyleSheet("background-color: #b1b8b7;");
                     if (saperBoard.get(y,x).isFlag())
                         {
                             if (endGame && saperBoard.get(y,x).isMine()==false)
@@ -133,7 +137,7 @@ void MainWindow::myButtonClick()
                 endGame = true;
                 saperBoard.clickAllMines();
                 saperBoard.setMineBoom(y,x);
-                ui->menuNowa_Gra->setTitle("przegrana");
+                ui->menuNowa_Gra->setTitle("Przegrana :)");
             }
             showBoard();
         }
@@ -159,10 +163,19 @@ void MainWindow::myButtonClickRight()
                             {
                                 endGame=true;
                                 saperBoard.clickAllMines();
-                                ui->menuNowa_Gra->setTitle("wygrana");
+                                ui->menuNowa_Gra->setTitle("Wygrana :)");
                             }
                         }
                 }
             showBoard();
         }
+}
+
+void MainWindow::newGameClick()
+{
+    endGame = false;
+    saperBoard.clear();
+    saperBoard.generateNew();
+    ui->menuNowa_Gra->setTitle("Gra");
+    showBoard();
 }
