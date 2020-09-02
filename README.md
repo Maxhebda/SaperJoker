@@ -2,6 +2,7 @@
 Mini project written in QT Creator C++
 
 <img src="./projectScreenImage/SaperJoker1.png" width=300/>
+
 ## Description of the game
 MinesweeperJoker is an ordinary sapper game.
 The problem is that not all numbers are shown, but only the Joker icon.
